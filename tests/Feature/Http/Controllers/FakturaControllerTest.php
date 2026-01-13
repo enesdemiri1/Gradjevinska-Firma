@@ -18,6 +18,15 @@ final class FakturaControllerTest extends TestCase
 {
     use AdditionalAssertions, RefreshDatabase, WithFaker;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = \App\Models\User::factory()->create();
+        $this->actingAs($this->user);
+    }
+
+
     #[Test]
     public function index_displays_view(): void
     {
@@ -30,7 +39,6 @@ final class FakturaControllerTest extends TestCase
         $response->assertViewHas('fakturas', $fakturas);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -39,7 +47,6 @@ final class FakturaControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('faktura.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -82,7 +89,6 @@ final class FakturaControllerTest extends TestCase
         $response->assertSessionHas('faktura.id', $faktura->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -95,7 +101,6 @@ final class FakturaControllerTest extends TestCase
         $response->assertViewHas('faktura', $faktura);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -107,7 +112,6 @@ final class FakturaControllerTest extends TestCase
         $response->assertViewIs('faktura.edit');
         $response->assertViewHas('faktura', $faktura);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -148,7 +152,6 @@ final class FakturaControllerTest extends TestCase
         $this->assertEquals($cena, $faktura->cena);
         $this->assertEquals($kupac->id, $faktura->kupac_id);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

@@ -9,12 +9,22 @@ use JMac\Testing\Traits\AdditionalAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+
 /**
  * @see \App\Http\Controllers\DobavljacController
  */
 final class DobavljacControllerTest extends TestCase
 {
     use AdditionalAssertions, RefreshDatabase, WithFaker;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = \App\Models\User::factory()->create();
+        $this->actingAs($this->user);
+    }
+
 
     #[Test]
     public function index_displays_view(): void
@@ -28,7 +38,6 @@ final class DobavljacControllerTest extends TestCase
         $response->assertViewHas('dobavljacs', $dobavljacs);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -37,7 +46,6 @@ final class DobavljacControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('dobavljac.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -71,7 +79,6 @@ final class DobavljacControllerTest extends TestCase
         $response->assertSessionHas('dobavljac.id', $dobavljac->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -84,7 +91,6 @@ final class DobavljacControllerTest extends TestCase
         $response->assertViewHas('dobavljac', $dobavljac);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -96,7 +102,6 @@ final class DobavljacControllerTest extends TestCase
         $response->assertViewIs('dobavljac.edit');
         $response->assertViewHas('dobavljac', $dobavljac);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -128,7 +133,6 @@ final class DobavljacControllerTest extends TestCase
         $this->assertEquals($naziv, $dobavljac->naziv);
         $this->assertEquals($adresa, $dobavljac->adresa);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

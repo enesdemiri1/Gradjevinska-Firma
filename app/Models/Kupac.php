@@ -9,9 +9,7 @@ class Kupac extends Model
 {
     use HasFactory;
 
-
     protected $table = 'kupacs';
-
 
     /**
      * The attributes that are mass assignable.

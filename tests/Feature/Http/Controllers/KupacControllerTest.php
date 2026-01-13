@@ -16,6 +16,15 @@ final class KupacControllerTest extends TestCase
 {
     use AdditionalAssertions, RefreshDatabase, WithFaker;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = \App\Models\User::factory()->create();
+        $this->actingAs($this->user);
+    }
+
+
     #[Test]
     public function index_displays_view(): void
     {
@@ -28,7 +37,6 @@ final class KupacControllerTest extends TestCase
         $response->assertViewHas('kupacs', $kupacs);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -37,7 +45,6 @@ final class KupacControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('kupac.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -71,7 +78,6 @@ final class KupacControllerTest extends TestCase
         $response->assertSessionHas('kupac.id', $kupac->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -84,7 +90,6 @@ final class KupacControllerTest extends TestCase
         $response->assertViewHas('kupac', $kupac);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -96,7 +101,6 @@ final class KupacControllerTest extends TestCase
         $response->assertViewIs('kupac.edit');
         $response->assertViewHas('kupac', $kupac);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -128,7 +132,6 @@ final class KupacControllerTest extends TestCase
         $this->assertEquals($ime, $kupac->ime);
         $this->assertEquals($kontakt, $kupac->kontakt);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

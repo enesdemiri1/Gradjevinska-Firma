@@ -16,6 +16,15 @@ final class RobaControllerTest extends TestCase
 {
     use AdditionalAssertions, RefreshDatabase, WithFaker;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = \App\Models\User::factory()->create();
+        $this->actingAs($this->user);
+    }
+
+
     #[Test]
     public function index_displays_view(): void
     {
@@ -28,7 +37,6 @@ final class RobaControllerTest extends TestCase
         $response->assertViewHas('robas', $robas);
     }
 
-
     #[Test]
     public function create_displays_view(): void
     {
@@ -37,7 +45,6 @@ final class RobaControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('roba.create');
     }
-
 
     #[Test]
     public function store_uses_form_request_validation(): void
@@ -77,7 +84,6 @@ final class RobaControllerTest extends TestCase
         $response->assertSessionHas('roba.id', $roba->id);
     }
 
-
     #[Test]
     public function show_displays_view(): void
     {
@@ -90,7 +96,6 @@ final class RobaControllerTest extends TestCase
         $response->assertViewHas('roba', $roba);
     }
 
-
     #[Test]
     public function edit_displays_view(): void
     {
@@ -102,7 +107,6 @@ final class RobaControllerTest extends TestCase
         $response->assertViewIs('roba.edit');
         $response->assertViewHas('roba', $roba);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -140,7 +144,6 @@ final class RobaControllerTest extends TestCase
         $this->assertEquals($jedinica_mere, $roba->jedinica_mere);
         $this->assertEquals($cena, $roba->cena);
     }
-
 
     #[Test]
     public function destroy_deletes_and_redirects(): void

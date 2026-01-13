@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FakturaStoreRequest;
 use App\Http\Requests\FakturaUpdateRequest;
 use App\Models\Faktura;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 use App\Models\Kupac;
-
+use Illuminate\Http\Request;
 
 class FakturaController extends Controller
 {

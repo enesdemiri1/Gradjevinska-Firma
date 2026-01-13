@@ -41,4 +41,11 @@ class Faktura extends Model
     {
         return $this->belongsTo(Kupac::class);
     }
+
+    public function izracunajUkupno()
+    {
+        return $this->kolicina * $this->cena;
+    }
+
+
 }
