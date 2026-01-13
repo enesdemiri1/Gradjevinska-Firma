@@ -1,0 +1,53 @@
+created:
+    - app/Http/Controllers/KupacController.php
+    - app/Http/Controllers/FakturaController.php
+    - app/Http/Controllers/DobavljacController.php
+    - app/Http/Controllers/RobaController.php
+    - database/factories/KupacFactory.php
+    - database/factories/FakturaFactory.php
+    - database/factories/DobavljacFactory.php
+    - database/factories/RobaFactory.php
+    - database/migrations/2026_01_13_155557_create_kupacs_table.php
+    - database/migrations/2026_01_13_155558_create_fakturas_table.php
+    - database/migrations/2026_01_13_155559_create_dobavljacs_table.php
+    - database/migrations/2026_01_13_155600_create_robas_table.php
+    - app/Models/Kupac.php
+    - app/Models/Faktura.php
+    - app/Models/Dobavljac.php
+    - app/Models/Roba.php
+    - tests/Feature/Http/Controllers/KupacControllerTest.php
+    - tests/Feature/Http/Controllers/FakturaControllerTest.php
+    - tests/Feature/Http/Controllers/DobavljacControllerTest.php
+    - tests/Feature/Http/Controllers/RobaControllerTest.php
+    - app/Http/Requests/KupacStoreRequest.php
+    - app/Http/Requests/KupacUpdateRequest.php
+    - app/Http/Requests/FakturaStoreRequest.php
+    - app/Http/Requests/FakturaUpdateRequest.php
+    - app/Http/Requests/DobavljacStoreRequest.php
+    - app/Http/Requests/DobavljacUpdateRequest.php
+    - app/Http/Requests/RobaStoreRequest.php
+    - app/Http/Requests/RobaUpdateRequest.php
+    - resources/views/kupac/index.blade.php
+    - resources/views/kupac/create.blade.php
+    - resources/views/kupac/show.blade.php
+    - resources/views/kupac/edit.blade.php
+    - resources/views/faktura/index.blade.php
+    - resources/views/faktura/create.blade.php
+    - resources/views/faktura/show.blade.php
+    - resources/views/faktura/edit.blade.php
+    - resources/views/dobavljac/index.blade.php
+    - resources/views/dobavljac/create.blade.php
+    - resources/views/dobavljac/show.blade.php
+    - resources/views/dobavljac/edit.blade.php
+    - resources/views/roba/index.blade.php
+    - resources/views/roba/create.blade.php
+    - resources/views/roba/show.blade.php
+    - resources/views/roba/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
+    Kupac: { ime: 'string:150', kontakt: 'text:20' }
+    Faktura: { datum: date, ukupno: integer, kolicina: integer, cena: integer, kupac_id: 'id foreign:Kupac' }
+    Dobavljac: { naziv: 'string:150', adresa: 'text:200' }
+    Roba: { naziv: 'string:150', kolicina: integer, jedinica_mere: 'text:10', cena: integer }

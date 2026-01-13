@@ -1,0 +1,34 @@
+models:
+  Kupac:
+    ime: string:150
+    kontakt: text:20
+
+  Faktura:
+    datum: date
+    ukupno: integer
+    kolicina: integer
+    cena: integer
+    kupac_id: id foreign:Kupac
+
+  Dobavljac:
+    naziv: string:150
+    adresa: text:200
+  
+  Roba:
+    naziv: string:150
+    kolicina: integer
+    jedinica_mere: text:10
+    cena: integer
+
+controllers:
+  Kupac:
+    resource
+
+  Faktura:
+    resource
+
+  Dobavljac:
+    resource
+
+  Roba:
+    resource
